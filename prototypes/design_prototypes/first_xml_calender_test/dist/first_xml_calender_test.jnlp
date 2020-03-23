@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="first_xml_calender_test.jnlp">
+  <information>
+    <title>first_xml_calender_test</title>
+    <vendor>Jan Donnerbauer</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="first_xml_calender_test.jar" size="4018" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="first_xml_calender_test" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="first_xml_calender_test.First_xml_calender_test"  name="first_xml_calender_test" />
+  <update check="always"/>
+</jnlp>
