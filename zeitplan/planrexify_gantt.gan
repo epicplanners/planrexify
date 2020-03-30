@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2020-04-16" view-index="0" gantt-divider-location="359" resource-divider-location="300" version="2.8.10" locale="de">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2020-05-06" view-index="0" gantt-divider-location="359" resource-divider-location="300" version="2.8.10" locale="de">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd3" name="Vorgang" width="187" order="0"/>
@@ -6,7 +6,7 @@
         <field id="tpd5" name="Ende" width="84" order="2"/>
         <option id="taskLabelDown" value="length"/>
         <timeline><![CDATA[0,4]]></timeline>
-        <option id="color.recent"><![CDATA[#ff0000 #99ff99 #99ccff]]></option>
+        <option id="color.recent"><![CDATA[#ff0000 #ff6666 #99ff99 #99ccff]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Ressource" width="210" order="0"/>
@@ -64,8 +64,21 @@
             <notes><![CDATA[genaure Funktionsbeschreibung im Pflichtenheft]]></notes>
             <depend id="42" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="49" name="Datenbank aufsetzen" color="#8cb6ce" meeting="false" start="2020-04-22" duration="10" complete="0" thirdDate="2020-04-06" thirdDate-constraint="0" expand="true"/>
-        <task id="42" name="Meilenstein erste Funktionen" color="#ff0000" meeting="true" start="2020-05-06" duration="0" complete="0" thirdDate="2020-04-16" thirdDate-constraint="0" expand="true"/>
+        <task id="49" name="Datenbank aufsetzen" color="#ff6666" meeting="false" start="2020-04-22" duration="10" complete="0" thirdDate="2020-04-06" thirdDate-constraint="0" expand="true"/>
+        <task id="42" name="Meilenstein erste Funktionen" color="#ff0000" meeting="true" start="2020-05-06" duration="0" complete="0" thirdDate="2020-04-16" thirdDate-constraint="0" expand="true">
+            <depend id="62" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="62" name="Datenbank verknüpfen" color="#ff6666" meeting="false" start="2020-05-06" duration="11" complete="0" thirdDate="2020-04-16" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Funktionen, wie das Erstellen von Terminen oder Einheiten, speichern die Daten in die Datenbank]]></notes>
+            <depend id="69" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="69" name="Funktionen testen" color="#ff6666" meeting="false" start="2020-05-21" duration="4" complete="0" thirdDate="2020-04-16" thirdDate-constraint="0" expand="true">
+            <depend id="74" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="74" name="Fehler korrigieren" color="#ff6666" meeting="false" start="2020-05-27" duration="6" complete="0" thirdDate="2020-04-16" thirdDate-constraint="0" expand="true">
+            <depend id="78" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="78" name="Meilenstein vorläufiges Projektende" color="#ff0000" meeting="true" start="2020-06-04" duration="0" complete="0" thirdDate="2020-05-06" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
