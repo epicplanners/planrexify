@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="logisches_Modell" id="1BF9BAD3-9B31-53C9-BCE7-48E3088EA96F" version="3.5">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-03-30 10:44:02 UTC</createdTime>
+<ownerDesignName>logisches_Modell</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>1BF9BAD3-9B31-53C9-BCE7-48E3088EA96F</designId>
+</OSDM_Design>

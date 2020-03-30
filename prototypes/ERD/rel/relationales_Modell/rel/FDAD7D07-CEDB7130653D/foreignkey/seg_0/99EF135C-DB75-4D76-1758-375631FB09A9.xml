@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="99EF135C-DB75-4D76-1758-375631FB09A9" containerWithKeyObject="13CB9013-B9DE-E238-258B-430936021974" localFKIndex="2E1AD365-CA6A-F544-4A3E-A2A752FF04D6" name="Wiederholen_Termin_FK">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-03-30 13:07:10 UTC</createdTime>
+<generatorID>41BA1326-DE08-4B6E-2D75-D43047153DCE</generatorID>
+<ownerDesignName>relationales_Modell</ownerDesignName>
+<referredTableLongName>Termin</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>DFFF51DB-FCFC-EA03-DA2A-D524750DF93D</referredTableID>
+<keyObject>AA61945C-C2F3-7B07-E45D-96D7E017F902</keyObject>
+<referredKeyID>AA61945C-C2F3-7B07-E45D-96D7E017F902</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Termin_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

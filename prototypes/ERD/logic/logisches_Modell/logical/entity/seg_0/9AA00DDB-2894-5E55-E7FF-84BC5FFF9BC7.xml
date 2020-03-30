@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9AA00DDB-2894-5E55-E7FF-84BC5FFF9BC7" name="Lehrer">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-03-30 11:09:56 UTC</createdTime>
+<ownerDesignName>logisches_Modell</ownerDesignName>
+<engineerTo>
+<item key="FDAD7D07-ECE3-CDD8-87FA-CEDB7130653D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nachname" id="49C4393C-51C4-CCD0-2D29-44E82F7F44CB">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-03-30 11:10:00 UTC</createdTime>
+<ownerDesignName>logisches_Modell</ownerDesignName>
+<engineerTo>
+<item key="FDAD7D07-ECE3-CDD8-87FA-CEDB7130653D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Vorname" id="C44E4F98-E79A-190A-AABA-3097FD125343">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-03-30 11:10:17 UTC</createdTime>
+<ownerDesignName>logisches_Modell</ownerDesignName>
+<engineerTo>
+<item key="FDAD7D07-ECE3-CDD8-87FA-CEDB7130653D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>
