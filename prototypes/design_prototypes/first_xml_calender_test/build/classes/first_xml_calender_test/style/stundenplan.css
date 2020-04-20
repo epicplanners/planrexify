@@ -1,0 +1,61 @@
+.calendar_pane {
+    -fx-box-border: transparent;
+    -fx-hgap: 5;
+    -fx-vgap: 5;
+    -fx-grid-lines-visible: false;
+}
+
+.wochentag {
+    -fx-border-color: black;
+    -fx-border-width: 0 0 2 0;
+
+}
+
+.zeitpunkt {
+    -fx-border-color: black;
+    -fx-border-width: 0 0 2 0;
+}
+
+.einheit {
+    -fx-background-color: #E8A77D;
+    -fx-padding: 20;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+}
+
+.add_button {
+    -fx-background-radius: 5em;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-background-color: #FFAD04;
+    -fx-text-fill: #fff;
+    -fx-font-weight: 900;
+    -fx-padding: 0;
+    -fx-textAlignment: CENTER;
+    -fx-line-spacing: 40px;
+    -fx-label-padding: 0;
+}
+
+.remove_border {
+    -fx-box-border: transparent;
+}
+
+.clouds {}
+
+.menu {
+    /*-fx-background-color: #E8A77D;*/
+    -fx-padding: 20;
+    -fx-background-image: url("../img/clouds.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+}
+
+.button_menu {
+    /*#303133*/
+    -fx-background-color: transparent;
+    -fx-text-fill: #000;
+    -fx-font-weight: 900;
+}
