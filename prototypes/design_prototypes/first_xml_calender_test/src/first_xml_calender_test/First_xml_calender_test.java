@@ -23,7 +23,7 @@ public class First_xml_calender_test extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 1080, 720);
         stage.setScene(scene);
         stage.show();
     }

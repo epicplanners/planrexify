@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="first_xml_calender_test.jar" size="318973" download="eager" />
+    <jar href="first_xml_calender_test.jar" size="318327" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="first_xml_calender_test" >
     <param name="requiredFXVersion" value="8.0+"/>
