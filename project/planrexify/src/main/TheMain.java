@@ -1,35 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
-import menuViewController.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-/**
- *
- * @author Ibo
- */
+import menuViewController.*;
+
 public class TheMain extends Application {
     
    @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MenuV.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
+        try {
+      String url = "jdbc:derby://localhost:1527/planrexifyDB";
+      String user = "app";
+      String pwd = "app";
+      Connection connection = DriverManager.getConnection(url, user, pwd);
+      Statement statement = connection.createStatement();
+
+      MenuC.show(stage, statement);
+    }
+    catch (SQLException ex) {
+      Logger.getLogger(TheMain.class.getName()).log(Level.SEVERE, null, ex);
+      System.exit(1);
+    }
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
