@@ -4,8 +4,6 @@ Einheit
 	Ausstehend:
 		vorhandene löschen - remove
 		vorhandene editieren - edit
-		Lehrer hinzufügen (Assoziativtabelle verwenden)
-		View in Stundenplan, um erstellte Einheiten zu sichten (XD-Prototype) /wie unten/
 		!Wichtig! bei Speichern, Dialog schließen !!!!!!
 
 

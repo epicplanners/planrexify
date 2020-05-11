@@ -17,8 +17,12 @@
     -fx-effect: dropshadow(three-pass-box, rgb(72, 133, 115), 10, 0, 0, 0);
 }
 
-.text-field {
-    -fx-padding: 0 20 0 20;
+.combo-box {
+    -fx-background-color: white;
+}
+
+.text-field, .combo-box {
+    -fx-padding: 10 10 10 10;
 }
 
 .pflichtfeld {

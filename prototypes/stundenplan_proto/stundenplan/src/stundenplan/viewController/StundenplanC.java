@@ -9,11 +9,13 @@ import einheit.model.*;
 import einheit.viewController.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -98,14 +102,27 @@ public class StundenplanC {
         }
     }
 
-    private void init() {
+    private void init() throws SQLException {
+        TreeItem<Einheit> tvRoot = new TreeItem<>(new Einheit());
+        tvRoot.setExpanded(true);
+        tvEinheiten.setRoot(tvRoot);
+        tvEinheiten.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
+        for (Einheit e : Einheit.findAll(statement)) {
+            TreeItem<Einheit> tvItem = new TreeItem<>(e);
+            tvRoot.getChildren().add(tvItem);
+        }
     }
 
     @FXML
     private void btAddOnClick(ActionEvent event) {
         Platform.runLater(() -> {
             EinheitC.show(null, statement, getStage());
+            try {
+                init();
+            } catch (SQLException ex) {
+                Logger.getLogger(StundenplanC.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 

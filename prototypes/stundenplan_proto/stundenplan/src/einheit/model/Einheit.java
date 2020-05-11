@@ -1,5 +1,7 @@
 package einheit.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,14 +12,20 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import teacher.model.Teacher;
 
 public class Einheit {
 
+    private final ObjectProperty<Number> einheit_id = new SimpleObjectProperty<>();
     private final StringProperty name = new SimpleStringProperty();
     private final StringProperty tag = new SimpleStringProperty();
     private final StringProperty raum = new SimpleStringProperty();
     private final StringProperty notizen = new SimpleStringProperty();
     private final ObjectProperty<Number> stunde = new SimpleObjectProperty<>();
+
+    private Teacher teacher;
 
     /**
      * NoArg-Konstruktor.
@@ -31,8 +39,45 @@ public class Einheit {
         raum.setValue(null);
         notizen.setValue(null);
         stunde.setValue(null);
+        teacher = new Teacher();
     }
 
+    public void setTeacher(Teacher newTeacher) {
+        if (this.teacher != newTeacher) {
+            // Alte Beziehung aufheben
+            if (this.teacher != null) {
+                this.teacher.removeEinheit(this);
+            }
+
+            // Neue Beziehung erstellen
+            // Richtung Konto -> InhaberIn
+            this.teacher = newTeacher;
+
+            // Richtung InhaberIn -> Konto
+            if (newTeacher != null) {
+                newTeacher.addEinheit(this);
+            }
+        }
+    }
+
+    /**
+     * Konto-Zuordnung aufheben.
+     * <p>
+     * @param oldKonto Zu enfernendes Konto
+     * <p>
+     * @throws bank.BankException
+     */
+    /*
+    public void removeKonto(Teacher oldTeacher) throws BankException {
+        if (this.konto.contains(oldKonto)) {
+            // Richtung Person -> Konto
+            this.konto.remove(oldKonto);
+
+            // Richtung Konto -> Person
+            oldKonto.setInhaberIn(null);
+        }
+    }
+     */
     public static Einheit find(String svnr, Statement statement) throws SQLException {
         /*String sqlQuery
            = "  select svnr "
@@ -90,47 +135,47 @@ public class Einheit {
      * @throws SQLException
      */
     public static List<Einheit> findAll(Statement statement) throws SQLException {
-        /*String sqlQuery
-           = "  select svnr "
-            + "       ,nname "
-            + "       ,vname "
-            + "       ,gebdat "
-            + "       ,groesse "
-            + "       ,geschlecht "
-            + " from Person "
-            + " order by nname, vname";
+        String sqlQuery
+                = "  select * "
+                + " from einheit "
+                + " order by name";
 
-    // Datenbankzugriff
-    ResultSet rSet = statement.executeQuery(sqlQuery);
+        // Datenbankzugriff
+        ResultSet rSet = statement.executeQuery(sqlQuery);
 
-    List<Person> personen = new LinkedList<>();
+        // Spezielle Liste für JavaFX 
+        ObservableList<Einheit> liEinheit = FXCollections.observableArrayList();
 
-    // ReesultSet durchgehen
-    while (rSet.next()) {
-      // Neue Person anlegen ...
-      Person person = new Person();
+        // Den ResultSet durchgehen
+        while (rSet.next()) {
+            // Neues Model anlegen
+            Einheit einheit = new Einheit();
 
-      // Attribute belegen ...
-      person.setSvnr(rSet.getString("svnr"));
-      person.setNname(rSet.getString("nname"));
-      person.setVname(rSet.getString("vname"));
-      person.setGebDat(rSet.getDate("gebdat"));
-      person.setGeschlecht(rSet.getString("geschlecht"));
+            // ... belegen
+            einheit.name.set(rSet.getString("name"));
+            einheit.tag.set(rSet.getString("tag"));
+            einheit.raum.set(rSet.getString("raum"));
+            einheit.notizen.set(rSet.getString("notizen"));
+            Double einheit_ID = rSet.getDouble("einheitID");
+            if (rSet.wasNull()) {
+                // Attribut soll nicht 0 sondern null sein.
+                einheit.einheit_id.set(null);
+            } else {
+                einheit.einheit_id.set(einheit_ID);
+            }
 
-      // getDouble() liefert 0, wenn Null!!!
-      Double groesseDb = rSet.getDouble("groesse");
-      if (rSet.wasNull()) {
-        person.setGroesse(null);
-      }
-      else {
-        person.setGroesse(groesseDb);
-      }
+            Double stunde = rSet.getDouble("stunde");
+            if (rSet.wasNull()) {
+                // Attribut soll nicht 0 sondern null sein.
+                einheit.stunde.set(null);
+            } else {
+                einheit.stunde.set(stunde);
+            }
 
-      // und an Liste anhängen
-      personen.add(person);
-    }
-    return personen;*/
-        return null;
+            // ... und in Liste hängen
+            liEinheit.add(einheit);
+        }
+        return liEinheit;
     }
 
     /**
@@ -146,6 +191,7 @@ public class Einheit {
         // Überprüfung und Defaulting
         killAndFill();
 
+        //Teacher und EInheit noch zusammenführen
         String sql
                 = "  insert "
                 + " into Einheit (name "
@@ -162,8 +208,33 @@ public class Einheit {
                 : "        , '" + notizen.get() + "' ")
                 + "        )";
 
-        // Datenbankzugriff
-        statement.executeUpdate(sql);
+        //zweites Statement
+        Connection connection = statement.getConnection();
+        PreparedStatement statement2 = connection.prepareStatement(sql,
+                Statement.RETURN_GENERATED_KEYS);
+
+        statement2.executeUpdate();
+        ResultSet rs = statement2.getGeneratedKeys();
+        rs.next();
+        System.out.println(rs.getInt(1));
+        einheit_id.set(rs.getInt(1));
+        String sql2
+                = "  insert "
+                + " into unterrichtet (einheitID "
+                + "             ,lehrerID "
+                + "             ) "
+                + " values ( "
+                // Achtung auf String-Null-Values: Die Hochkommas müssen gesondert behandelt werden!
+                + (einheit_id.get() == null
+                ? "        null "
+                : "        " + einheit_id.get() + " ")
+                + (teacher.getTeacher_id() == null
+                ? "        , null "
+                : "        , " + teacher.getTeacher_id().get().intValue() + " ")
+                + "        )";
+
+        System.out.println(sql2);
+        statement.executeUpdate(sql2);
     }
 
     /**
@@ -219,6 +290,15 @@ public class Einheit {
     private void killAndFill() {
         if (name.get() == null || name.get().length() == 0) {
             throw new IllegalArgumentException("Sozialversicherungsnummer muss angegeben werden!");
+        }
+    }
+
+    @Override
+    public String toString() {
+        if (name != null) {
+            return name.getValue();
+        } else {
+            return " ";
         }
     }
 }

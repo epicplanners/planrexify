@@ -29,6 +29,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import teacher.model.Teacher;
@@ -52,6 +53,8 @@ public class EinheitC {
     private ComboBox<Teacher> cbTeacher;
     @FXML
     private Button btSave;
+    @FXML
+    private VBox vbRoot;
 
     // aktuelle Models
     private ObservableList<Teacher> liTeacher;
@@ -86,6 +89,7 @@ public class EinheitC {
             }
             stage.setScene(scene);
             stage.initOwner(parent);
+            
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setTitle("Create Einheit");
 
@@ -169,7 +173,9 @@ public class EinheitC {
 
     private void save() {
         try {
+            current.setTeacher(cbTeacher.getValue());
             current.create(statement);
+            ((Stage) (vbRoot.getScene().getWindow())).close();
         } catch (SQLException ex) {
             Logger.getLogger(EinheitC.class.getName()).log(Level.SEVERE, null, ex);
         }
