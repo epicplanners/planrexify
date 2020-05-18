@@ -18,7 +18,7 @@
                <children>
                   <ImageView fx:id="menuImageIcon" fitHeight="128.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icon.png" />
+                        <Image url="@icon.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="menuImageText" fitHeight="105.0" fitWidth="406.0" pickOnBounds="true" preserveRatio="true">
