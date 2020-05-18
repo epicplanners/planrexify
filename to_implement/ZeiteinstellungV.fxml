@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="vbRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #E27D5F;" stylesheets="@../../stundenplan/style/stundenplanEingabefeldCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="einheit.viewController.EinheitC">
+   <children>
+      <VBox prefHeight="90.0" prefWidth="291.0">
+         <children>
+            <Label text="Unterrichtdauer (Einheit in Minuten)">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Slider fx:id="dauerUnterrichtSlider" />
+                  <Label fx:id="dauerUnterrichtDisplay" text="Dauer in Minuten" />
+               </children>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+         </padding>
+      </VBox>
+      <VBox prefHeight="90.0" prefWidth="291.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+         </padding>
+         <children>
+            <Label text="Pausendauer (Einheit in Minuten)">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Slider fx:id="dauerPausenSlider" />
+                  <Label fx:id="dauerPauseDisplay" text="Dauer in Minuten" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="90.0" prefWidth="291.0">
+         <children>
+            <Label text="Anzeige von:">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <CheckBox fx:id="stundenanfang" mnemonicParsing="false" text="Stundenanfang" />
+            <CheckBox fx:id="stundenende" mnemonicParsing="false" text="Stundenende" />
+            <CheckBox fx:id="pausenanfang" mnemonicParsing="false" text="Pausenanfang" />
+            <CheckBox fx:id="pausenende" mnemonicParsing="false" text="Pausenende" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+         </padding>
+      </VBox>
+      <VBox>
+         <children>
+            <VBox prefHeight="41.0" prefWidth="258.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="78.0" prefWidth="308.0">
+                     <children>
+                        <Button fx:id="btSave" mnemonicParsing="false" onAction="#btSaveOnClick" text="Save" />
+                        <ImageView fitHeight="42.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../stundenplan/img/logo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="40.0" right="40.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</VBox>

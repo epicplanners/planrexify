@@ -1,0 +1,53 @@
+.root {
+    -fx-background-color: #63B9A0;
+    -fx-border-color: transparent;
+}
+
+.text-area, .text-field {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: white;
+    -fx-text-box-border: transparent;
+    -fx-base: transparent;
+    -fx-background-insets: 0;
+    -fx-text-box-border: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgb(72, 133, 115), 10, 0, 0, 0);
+}
+
+.slider {
+    -fx-effect: dropshadow(three-pass-box, rgb(72, 133, 115), 4, 0, 0, 0);
+}
+
+.combo-box {
+    -fx-background-color: white;
+}
+
+.text-field, .combo-box {
+    -fx-padding: 10 10 10 10;
+}
+
+.check-box {
+    -fx-padding: 10 10 10 10;
+}
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: grey;
+    -fx-border-radius: 3px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #28a3f4;
+}
+
+.pflichtfeld {
+    -fx-font-weight: bold;
+    -fx-text-fill: #004e4a;
+}
