@@ -32,6 +32,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import stundenplan.viewController.StundenplanC;
 import teacher.model.Teacher;
 
 /**
@@ -61,6 +62,8 @@ public class EinheitC {
 
     // Controller für diese View
     private final static String VIEWNAME = "EinheitV.fxml";
+    
+    private static StundenplanC parentControll;
 
     // Verbindung zur Datenbank
     private Statement statement;
@@ -73,8 +76,9 @@ public class EinheitC {
      * @param stage
      * @param statement
      * @param parent
+     * @param parentC
      */
-    public static void show(Stage stage, Statement statement, Stage parent) {
+    public static void show(Stage stage, Statement statement, Stage parent, StundenplanC parentC) {
         try {
             // View und Controller erstellen
             FXMLLoader loader = new FXMLLoader(EinheitC.class.getResource(VIEWNAME));
@@ -82,6 +86,8 @@ public class EinheitC {
 
             // Scene erstellen
             Scene scene = new Scene(root);
+            
+            parentControll = parentC;
 
             // Stage: Entweder übergebene Stage verwenden (Primary Stage) oder neue erzeugen
             if (stage == null) {
@@ -176,6 +182,7 @@ public class EinheitC {
             current.setTeacher(cbTeacher.getValue());
             current.create(statement);
             ((Stage) (vbRoot.getScene().getWindow())).close();
+            parentControll.init();
         } catch (SQLException ex) {
             Logger.getLogger(EinheitC.class.getName()).log(Level.SEVERE, null, ex);
         }

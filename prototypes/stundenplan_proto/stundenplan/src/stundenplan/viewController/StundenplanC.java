@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
@@ -102,7 +104,7 @@ public class StundenplanC {
         }
     }
 
-    private void init() throws SQLException {
+    public void init() throws SQLException {
         TreeItem<Einheit> tvRoot = new TreeItem<>(new Einheit());
         tvRoot.setExpanded(true);
         tvEinheiten.setRoot(tvRoot);
@@ -115,9 +117,10 @@ public class StundenplanC {
     }
 
     @FXML
+
     private void btAddOnClick(ActionEvent event) {
         Platform.runLater(() -> {
-            EinheitC.show(null, statement, getStage());
+            EinheitC.show(null, statement, getStage(), this);
             try {
                 init();
             } catch (SQLException ex) {
