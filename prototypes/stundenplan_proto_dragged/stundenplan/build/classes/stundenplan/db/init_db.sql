@@ -65,7 +65,8 @@ ALTER TABLE sondereinheit
 
 ALTER TABLE unterrichtet
     ADD CONSTRAINT unterrichtet_einheit_fk FOREIGN KEY ( einheitID )
-        REFERENCES einheit ( einheitID );
+        REFERENCES einheit ( einheitID )
+            ON DELETE CASCADE;
 
 ALTER TABLE unterrichtet
     ADD CONSTRAINT unterrichtet_lehrer_fk FOREIGN KEY ( lehrerID )
