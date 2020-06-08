@@ -102,7 +102,6 @@ public class Einheit {
             // Neues Model anlegen
             einheit = new Einheit();
 
-            
             // ... belegen
             einheit.name.set(rSet.getString("name"));
             einheit.tag.set(rSet.getString("tag"));
@@ -248,37 +247,33 @@ public class Einheit {
         }
     }
 
-    public void update(Statement statement, String oldFach) {
-        try {
-            // Überprüfung und Defaulting
-            killAndFill();
+    public void update(Statement statement, String oldFach) throws SQLException {
+        // Überprüfung und Defaulting
+        killAndFill();
 //            Connection conn = statement.getConnection();
 //            PreparedStatement ps = conn.prepareStatement(
 //                    "UPDATE Einheit SET description = ?, author = ? WHERE id = ? AND seq_num = ?");
 
-            if (name.get() != null && name.get().trim().length() != 0) {
-                String sql2
-                        = "  update unterrichtet "
-                        + " set lehrerID = "
-                        + (teacher.getTeacher_id() == null ? " null " : teacher.getTeacher_id().get().intValue())
-                        + " where einheitId = ("
-                        + " select einheitID "
-                        + " from einheit"
-                        + " where name like '" + oldFach + "')";
+        if (name.get() != null && name.get().trim().length() != 0) {
+            String sql2
+                    = "  update unterrichtet "
+                    + " set lehrerID = "
+                    + (teacher.getTeacher_id() == null ? " null " : teacher.getTeacher_id().get().intValue())
+                    + " where einheitId = ("
+                    + " select einheitID "
+                    + " from einheit"
+                    + " where name like '" + oldFach + "')";
 
-                System.out.println(sql2);
-                statement.executeUpdate(sql2);
-                
-                String sql = "update Einheit set "
-                        + " name = '" + name.get().trim() + "' , "
-                        + " raum = " + (raum.get() == null || raum.get().trim().length() == 0 ? "null" : "'" + raum.get() + "'") + ", "
-                        + " notizen = " + (notizen.get() == null || notizen.get().trim().length() == 0 ? "null" : "'" + notizen.get() + "'") + " "
-                        + " where name like '" + oldFach + "'";
-                System.out.println(sql);
-                statement.executeUpdate(sql);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(sql2);
+            statement.executeUpdate(sql2);
+
+            String sql = "update Einheit set "
+                    + " name = '" + name.get().trim() + "' , "
+                    + " raum = " + (raum.get() == null || raum.get().trim().length() == 0 ? "null" : "'" + raum.get() + "'") + ", "
+                    + " notizen = " + (notizen.get() == null || notizen.get().trim().length() == 0 ? "null" : "'" + notizen.get() + "'") + " "
+                    + " where name like '" + oldFach + "'";
+            System.out.println(sql);
+            statement.executeUpdate(sql);
         }
     }
 
@@ -335,7 +330,7 @@ public class Einheit {
     public StringProperty teacher_cbProperty() {
         return teacher_cb;
     }
-    
+
     public Teacher getTeacher() {
         return teacher;
     }

@@ -206,23 +206,19 @@ public class EinheitC {
                 return;
             }
             current.setTeacher(cbTeacher.getValue());
-//            if (shouldUpdate 
-//                    && oldFach.trim().length() > 0
-//                    && tfFach.getText().trim().length() > 0 
-//                    && tfFach.getText() != oldFach) {
-//                shouldUpdate = false;
-//            }
-
             if (!shouldUpdate) {
                 current.create(statement);
+
+                ((Stage) (vbRoot.getScene().getWindow())).close();
+                parentControll.init(null);
             } else {
                 current.update(statement, oldFach);
-            }
 
-            ((Stage) (vbRoot.getScene().getWindow())).close();
-            parentControll.init();
+                ((Stage) (vbRoot.getScene().getWindow())).close();
+                parentControll.init("update");
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(EinheitC.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
 }

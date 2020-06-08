@@ -1,5 +1,5 @@
 drop table sondereinheit;
-
+select * from einheit;
 drop table unterrichtet;
 
 Drop table einheit;

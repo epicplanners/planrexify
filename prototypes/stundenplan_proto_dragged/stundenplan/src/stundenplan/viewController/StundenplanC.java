@@ -102,9 +102,9 @@ public class StundenplanC {
 
             // Datenbankzugriff merken
             stundenplanC.statement = statement;
-
+            stundenplanC.setTvRoot();
             // View initialisieren
-            stundenplanC.init();
+            stundenplanC.init(null);
 
             // Anzeigen
             stage.show();
@@ -120,19 +120,28 @@ public class StundenplanC {
         }
     }
 
-    public void init() throws SQLException {
+    private void setTvRoot() {
+        // Sollte eigentlich den ganzen Inhalt der tvEinheiten Löschen
+        // Tut es aber nicht :/
+        tvEinheiten.setRoot(null);
+        tvRoot = new TreeItem<>(new Einheit());
         tvEinheiten.setRoot(tvRoot);
+    }
+
+    public void init(String update) throws SQLException {
+        if (update != null) {
+            setTvRoot();
+        }
+
         tvEinheiten.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         tvRoot.setExpanded(true);
 
         for (Einheit e : Einheit.findAll(statement)) {
-
             TreeItem<Einheit> tvItem = new TreeItem<>(e);
             if (tvRoot.getChildren().toString().indexOf(e.toString()) == -1) {
                 tvRoot.getChildren().add(tvItem);
             }
-
         }
 
         tvEinheiten.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -195,7 +204,7 @@ public class StundenplanC {
                 EinheitC.show(null, statement, getStage(), this, null);
             }
             try {
-                init();
+                init(null);
             } catch (SQLException ex) {
                 Logger.getLogger(StundenplanC.class.getName()).log(Level.SEVERE, null, ex);
             }
