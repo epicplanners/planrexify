@@ -72,7 +72,6 @@ public class StundenplanC {
     @FXML
     private Button btAdd;
 
-    
     private VBox vBox;
     private Label label;
     private boolean isDragged = false;
@@ -155,13 +154,13 @@ public class StundenplanC {
                 System.out.println("hey");
             }
         });
-        
+
         tvEinheiten.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 tvEinheiten.getScene().setCursor(Cursor.HAND);
             }
         });
-        
+
         tvEinheiten.setOnMouseExited(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 tvEinheiten.getScene().setCursor(Cursor.DEFAULT);
@@ -180,23 +179,19 @@ public class StundenplanC {
                 tvEinheiten.setMouseTransparent(false);
                 if (isDragged) {
                     label = new Label();
-                        vBox = new VBox();
-                        String text = tvEinheiten.getSelectionModel().getSelectedItem().getValue().toString();
-                        label.setText(text);
-                        vBox.getChildren().add(label);
-                        vBox.getStyleClass().add("einheit");
-                        double cellWidth = ((calendarGrid.getWidth() - 50) / 6) + 10;
-                        double cellHeight = 123.0;
-                        double x = event.getPickResult().getIntersectedPoint().getX();
-                        double y = event.getPickResult().getIntersectedPoint().getY();
-                        double insertX = Math.floor(x / cellWidth) + 1;
-                        double insertY = Math.floor(y / cellHeight);
-                        if(insertX == 1 && insertY == 0) {
-                        }
-                        else {
-                            calendarGrid.add(vBox, (int) insertX, (int) insertY);
-                        }
-                        calendarGrid.getScene().setCursor(Cursor.DEFAULT);
+                    vBox = new VBox();
+                    String text = tvEinheiten.getSelectionModel().getSelectedItem().getValue().toString();
+                    label.setText(text);
+                    vBox.getChildren().add(label);
+                    vBox.getStyleClass().add("einheit");
+                    double cellWidth = ((calendarGrid.getWidth() - 50) / 6) + 10;
+                    double cellHeight = 123.0;
+                    double x = event.getPickResult().getIntersectedPoint().getX();
+                    double y = event.getPickResult().getIntersectedPoint().getY();
+                    double insertX = Math.floor(x / cellWidth) + 1;
+                    double insertY = Math.floor(y / cellHeight);
+                    calendarGrid.add(vBox, (int) insertX, (int) insertY);
+                    calendarGrid.getScene().setCursor(Cursor.DEFAULT);
                 } else {
                     System.out.println("not dragged");
                     if (tvEinheiten.getSelectionModel().getSelectedItem() != null) {

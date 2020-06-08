@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bpRoot" maxHeight="1000.0" maxWidth="1920.0" minWidth="400.0" prefHeight="1000.0" prefWidth="1920.0" styleClass="root" stylesheets="@../style/stundenplan.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stundenplan.viewController.StundenplanC">
+<BorderPane fx:id="bpRoot" maxHeight="1000.0" maxWidth="1920.0" minWidth="400.0" prefHeight="1000.0" prefWidth="1920.0" styleClass="root" stylesheets="@../style/stundenplan.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stundenplan.viewController.StundenplanC">
     <left>
         <VBox maxWidth="200.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT">
             <children>
@@ -178,19 +178,6 @@
                                                 <Font size="14.0" />
                                             </font>
                                         </Label>
-                                        <VBox prefHeight="113.0" prefWidth="179.0" styleClass="einheit" stylesheets="@../style/stundenplan.css" GridPane.columnIndex="1">
-                                            <children>
-                                                <Label prefHeight="17.0" prefWidth="162.0" text="INSY" />
-                                            </children>
-                                            <GridPane.margin>
-                                                <Insets />
-                                            </GridPane.margin>
-                                        </VBox>
-                                        <VBox prefHeight="113.0" prefWidth="179.0" styleClass="einheit" stylesheets="@../style/stundenplan.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                            <children>
-                                                <Label prefHeight="17.0" prefWidth="162.0" text="INSY" />
-                                            </children>
-                                        </VBox>
                                     </children>
                                 </GridPane>
                             </content>
