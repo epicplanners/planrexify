@@ -178,38 +178,44 @@ public class StundenplanC {
             public void handle(MouseEvent event) {
                 tvEinheiten.setMouseTransparent(false);
                 if (isDragged) {
-                    label = new Label();
-                    vBox = new VBox();
-                    String text = tvEinheiten.getSelectionModel().getSelectedItem().getValue().toString();
-                    label.setText(text);
-                    vBox.getChildren().add(label);
-                    vBox.getStyleClass().add("einheit");
-                    vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        public void handle(MouseEvent event) {
-                            if(event.getClickCount() == 2) {
-                                calendarGrid.getChildren().remove(event.getSource());
+                    String node = event.getPickResult().getIntersectedNode().toString();
+
+                    if (node.contains("Grid")) {
+
+                        label = new Label();
+                        vBox = new VBox();
+                        String text = tvEinheiten.getSelectionModel().getSelectedItem().getValue().toString();
+                        label.setText(text);
+                        vBox.getChildren().add(label);
+                        vBox.getStyleClass().add("einheit");
+                        vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            public void handle(MouseEvent event) {
+                                if (event.getClickCount() == 2) {
+                                    calendarGrid.getChildren().remove(event.getSource());
+                                }
                             }
-                        }
-                    });
+                        });
 
-                    vBox.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                        public void handle(MouseEvent event) {
-                            vBox.getScene().setCursor(Cursor.HAND);
-                        }
-                    });
+                        vBox.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            public void handle(MouseEvent event) {
+                                tvEinheiten.getScene().setCursor(Cursor.HAND);
+                            }
+                        });
 
-                    vBox.setOnMouseExited(new EventHandler<MouseEvent>() {
-                        public void handle(MouseEvent event) {
-                            vBox.getScene().setCursor(Cursor.DEFAULT);
-                        }
-                    });
-                    double cellWidth = ((calendarGrid.getWidth() - 50) / 6) + 10;
-                    double cellHeight = 123.0;
-                    double x = event.getPickResult().getIntersectedPoint().getX();
-                    double y = event.getPickResult().getIntersectedPoint().getY();
-                    double insertX = Math.floor(x / cellWidth) + 1;
-                    double insertY = Math.floor(y / cellHeight);
-                    calendarGrid.add(vBox, (int) insertX, (int) insertY);
+                        vBox.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            public void handle(MouseEvent event) {
+                                tvEinheiten.getScene().setCursor(Cursor.DEFAULT);
+                            }
+                        });
+                        double cellWidth = ((calendarGrid.getWidth() - 50) / 6) + 10;
+                        double cellHeight = 123.0;
+                        double x = event.getPickResult().getIntersectedPoint().getX();
+                        double y = event.getPickResult().getIntersectedPoint().getY();
+                        double insertX = Math.floor(x / cellWidth) + 1;
+                        double insertY = Math.floor(y / cellHeight);
+                        calendarGrid.add(vBox, (int) insertX, (int) insertY);
+                        
+                    }
                     calendarGrid.getScene().setCursor(Cursor.DEFAULT);
                 } else {
                     System.out.println("not dragged");
