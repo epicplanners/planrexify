@@ -178,6 +178,46 @@
                                                 <Font size="14.0" />
                                             </font>
                                         </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="40.0" styleClass="zeitpunkt" stylesheets="@../style/stundenplan.css" text="13:40" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="40.0" styleClass="zeitpunkt" stylesheets="@../style/stundenplan.css" text="14:35" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="40.0" styleClass="zeitpunkt" stylesheets="@../style/stundenplan.css" text="15:30" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="40.0" styleClass="zeitpunkt" stylesheets="@../style/stundenplan.css" text="16:25" GridPane.rowIndex="9">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="40.0" styleClass="zeitpunkt" stylesheets="@../style/stundenplan.css" text="17:20" GridPane.rowIndex="10">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="40.0" styleClass="zeitpunkt" stylesheets="@../style/stundenplan.css" text="18:15" GridPane.rowIndex="11">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="40.0" styleClass="zeitpunkt" stylesheets="@../style/stundenplan.css" text="19:10" GridPane.rowIndex="12">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="120.0" prefWidth="40.0" styleClass="zeitpunkt" stylesheets="@../style/stundenplan.css" text="20:05" GridPane.rowIndex="13">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
                                     </children>
                                 </GridPane>
                             </content>

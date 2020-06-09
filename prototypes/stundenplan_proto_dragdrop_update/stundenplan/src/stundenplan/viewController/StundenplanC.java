@@ -184,6 +184,25 @@ public class StundenplanC {
                     label.setText(text);
                     vBox.getChildren().add(label);
                     vBox.getStyleClass().add("einheit");
+                    vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            if(event.getClickCount() == 2) {
+                                calendarGrid.getChildren().remove(event.getSource());
+                            }
+                        }
+                    });
+
+                    vBox.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            vBox.getScene().setCursor(Cursor.HAND);
+                        }
+                    });
+
+                    vBox.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            vBox.getScene().setCursor(Cursor.DEFAULT);
+                        }
+                    });
                     double cellWidth = ((calendarGrid.getWidth() - 50) / 6) + 10;
                     double cellHeight = 123.0;
                     double x = event.getPickResult().getIntersectedPoint().getX();
