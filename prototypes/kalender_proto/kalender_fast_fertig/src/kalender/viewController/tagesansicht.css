@@ -10,6 +10,11 @@
     -fx-background-color: #fff;
 }
 
+.calendar_pane > .table-cell{
+    -fx-pref-height: 50;
+    -fx-min-height: 50;
+}
+
 .wochentag {
     -fx-border-color: #6C6C6C;
     -fx-border-width: 0 0 1 0;

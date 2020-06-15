@@ -54,7 +54,8 @@ public class FullCalendarView {
         currentYearMonth.set(yearMonth);
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
-        calendar.setPrefSize(1720, 800);
+        calendar.setPrefSize(1400, 840);
+        calendar.alignmentProperty().set(Pos.CENTER);
         calendar.setGridLinesVisible(true);
         // Create rows and columns with anchor panes for the calendar
         for (int i = 0; i < 5; i++) {
@@ -67,27 +68,27 @@ public class FullCalendarView {
             }
         }
         // Days of the week labels
-        Text[] dayNames = new Text[]{new Text("Sunday"), new Text("Monday"), new Text("Tuesday"),
+        Text[] dayNames = new Text[]{new Text("Monday"), new Text("Tuesday"),
             new Text("Wednesday"), new Text("Thursday"), new Text("Friday"),
-            new Text("Saturday")};
+            new Text("Saturday"), new Text("Sunday")};
+        
         GridPane dayLabels = new GridPane();
-        dayLabels.setPrefWidth(600);
+        dayLabels.setPrefWidth(1400);
+        
+        dayLabels.getStyleClass().add("big");
         Integer col = 0;
         for (Text txt : dayNames) {
             AnchorPane ap = new AnchorPane();
-            ap.setPrefSize(200, 10);
+            ap.setPrefSize(200, 50);
+            
             ap.setBottomAnchor(txt, 5.0);
             ap.getChildren().add(txt);
             dayLabels.add(ap, col++, 0);
         }
-        // Create calendarTitle and buttons to change current month
-        calendarTitle = new Text();
-        HBox titleBar = new HBox(calendarTitle);
-        titleBar.setAlignment(Pos.BASELINE_CENTER);
         // Populate calendar with the appropriate day numbers
         populateCalendar(yearMonth);
         // Create the calendar view
-        view = new VBox(titleBar, dayLabels, calendar);
+        view = new VBox(dayLabels, calendar);
     }
 
     /**
@@ -99,7 +100,7 @@ public class FullCalendarView {
         // Get the date we want to start with on the calendar
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
         // Dial back the day until it is SUNDAY (unless the month starts on a sunday)
-        while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY")) {
+        while (!calendarDate.getDayOfWeek().toString().equals("MONDAY")) {
             calendarDate = calendarDate.minusDays(1);
         }
         // Populate the calendar with day numbers
@@ -116,8 +117,8 @@ public class FullCalendarView {
 
             ListView lv = new ListView();
 
-            lv.setPrefSize(150, 100);
-            lv.setMaxSize(180, 100);
+            lv.setPrefSize(200, 100);
+            lv.setMaxSize(200, 100);
             ap.setTopAnchor(lv, 40.0);
             ap.setLeftAnchor(lv, 0.0);
             ap.getChildren().add(lv);
@@ -146,7 +147,7 @@ public class FullCalendarView {
             calendarDate = calendarDate.plusDays(1);
         }
         // Change the title of the calendar
-        calendarTitle.setText(yearMonth.getMonth().toString() + " " + String.valueOf(yearMonth.getYear()));
+        //calendarTitle.setText(yearMonth.getMonth().toString() + " " + String.valueOf(yearMonth.getYear()));
     }
 
     /**

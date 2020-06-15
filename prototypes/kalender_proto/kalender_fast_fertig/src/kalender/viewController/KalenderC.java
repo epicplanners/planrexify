@@ -4,13 +4,17 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +22,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -33,6 +40,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import kalender.model.AnchorPaneNode;
 import kalender.model.FullCalendarView;
+import termin.model.Termin;
 import termin.viewController.TerminC;
 
 public class KalenderC {
@@ -55,10 +63,18 @@ public class KalenderC {
     private VBox centerArea;
     @FXML
     private BorderPane bpRoot;
+    @FXML
+    private DatePicker dpDate;
 
     private Statement statement;
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
+    private GridPane calendarGrid;
 
     private static FullCalendarView fullCalenderView;
+    
+    private KalenderC kalenderC;
 
     private final static String VIEWNAME = "monatsansicht.fxml";
 
@@ -85,8 +101,7 @@ public class KalenderC {
             fullCalenderView = new FullCalendarView(YearMonth.now(), statement, stage, kalenderC);
 
             kalenderC.calendarPane.setContent(fullCalenderView.getView());
-            
-            
+
             // Datenbankzugriff merken
             kalenderC.statement = statement;
 
@@ -95,7 +110,7 @@ public class KalenderC {
             });
 
             // View initialisieren
-            kalenderC.init();
+            kalenderC.init(kalenderC);
 
             // Anzeigen
             stage.show();
@@ -111,22 +126,70 @@ public class KalenderC {
         }
     }
 
-    public void init() throws SQLException {
-        
+    public void init(KalenderC kalenderC) throws SQLException {
+
         fullCalenderView.populateCalendar(fullCalenderView.yearMonthProperty().get());
 
         laCurrentMonth.textProperty().bind(fullCalenderView.yearMonthProperty().asString());
+
         //Kalender soll mit jetzigem Monat starten
+        dpDate.valueProperty().setValue(LocalDate.now());
+
+        dpDate.valueProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                fullCalenderView.populateCalendar(YearMonth.from(dpDate.valueProperty().get()));
+            } catch (SQLException ex) {
+                Logger.getLogger(KalenderC.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
+        for (int i = 0; i < 24; i++) {
+            ListView lv = new ListView();
+
+            lv.setPrefSize(150, 50);
+            lv.setMaxSize(150, 50);
+
+            lv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+            ObservableList<Termin> listTermin = Termin.findAll(statement, dpDate.valueProperty().get());
+            ObservableList<Termin> listTerminHour = FXCollections.observableArrayList();
+            
+            for (Termin t : listTermin) {
+                if(t.startTimeProperty().get().getHour() == i){
+                    listTerminHour.add(t);
+                }
+            }
+            
+            lv.setItems(listTerminHour);
+
+            lv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                public void handle(MouseEvent event) {
+
+                    if (lv.getSelectionModel().getSelectedItem() != null) {
+                        Platform.runLater(() -> {
+                            FXMLLoader loader = new FXMLLoader(KalenderC.class.getResource(VIEWNAME));
+                            
+                            TerminC.show(null, statement, getStage(), kalenderC, (Termin) lv.getSelectionModel().getSelectedItem());
+                        });
+                    }
+
+                }
+            });
+            calendarGrid.add(lv, 1, i);
+        }
+
+        ObservableList<Termin> listTermin = Termin.findAll(statement, dpDate.valueProperty().get());
 
     }
 
     @FXML
     private void month_backOnClick(ActionEvent event) throws SQLException {
+        dpDate.valueProperty().setValue(dpDate.valueProperty().get().minusMonths(1));
         fullCalenderView.previousMonth();
     }
 
     @FXML
     private void month_forwardOnClick(ActionEvent event) throws SQLException {
+        dpDate.valueProperty().setValue(dpDate.valueProperty().get().plusMonths(1));
         fullCalenderView.nextMonth();
     }
 

@@ -158,6 +158,9 @@ public class TerminC {
             old = false;
             reset_display(null);
         }
+        spinner_start.setMaxWidth(130);
+        spinner_end.setMaxWidth(130);
+
         hbDate.getChildren().add(1, spinner_start);
 
         hbDate.getChildren().add(spinner_end);
@@ -221,7 +224,7 @@ public class TerminC {
             }
 
             ((Stage) (vbRoot.getScene().getWindow())).close();
-            parentControll.init();
+            parentControll.init(parentControll);
             //parentControll.init();
         } catch (SQLException ex) {
             Logger.getLogger(TerminC.class.getName()).log(Level.SEVERE, null, ex);
