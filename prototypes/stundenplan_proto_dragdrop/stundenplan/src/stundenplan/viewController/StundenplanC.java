@@ -15,6 +15,9 @@ import einheit.viewController.*;
 import java.awt.Component;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
@@ -135,7 +138,7 @@ public class StundenplanC {
         if (update != null) {
             setTvRoot();
         }
-        
+
         calendarGrid.setGridLinesVisible(false);
 
         tvEinheiten.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -149,12 +152,46 @@ public class StundenplanC {
             }
         }
 
-        tvEinheiten.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                tvEinheiten.setMouseTransparent(true);
-                event.setDragDetect(true);
-            }
-        });
+        for (Stunde s : Stunde.findAll(statement)) {
+            VBox vBox = new VBox();
+            label = new Label();
+            String text = s.getName();
+            label.setText(text);
+            vBox.getChildren().add(label);
+            vBox.getStyleClass().add("einheit");
+
+            vBox.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                public void handle(MouseEvent event) {
+                    tvEinheiten.getScene().setCursor(Cursor.HAND);
+                }
+            });
+
+            vBox.setOnMouseExited(new EventHandler<MouseEvent>() {
+                public void handle(MouseEvent event) {
+                    tvEinheiten.getScene().setCursor(Cursor.DEFAULT);
+                }
+            });
+            vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                public void handle(MouseEvent event) {
+                    if (event.getClickCount() == 2) {
+                        calendarGrid.getChildren().remove(event.getSource());
+                        removeFromTable(s.getCol(), s.getRow());
+                    }
+                }
+            });
+            calendarGrid.add(vBox, s.getCol(), s.getRow());
+
+        }
+
+    tvEinheiten.setOnMouseClicked ( new EventHandler<MouseEvent>() {
+            
+
+    public void handle(MouseEvent event) {
+        tvEinheiten.setMouseTransparent(true);
+        event.setDragDetect(true);
+    }
+}
+);
 
         tvEinheiten.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
@@ -185,19 +222,14 @@ public class StundenplanC {
 
                     if (node.contains("Grid")) {
 
-                        label = new Label();
+                        
                         vBox = new VBox();
+                        label = new Label();
                         String text = tvEinheiten.getSelectionModel().getSelectedItem().getValue().toString();
                         label.setText(text);
                         vBox.getChildren().add(label);
                         vBox.getStyleClass().add("einheit");
-                        vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            public void handle(MouseEvent event) {
-                                if (event.getClickCount() == 2) {
-                                    calendarGrid.getChildren().remove(event.getSource());
-                                }
-                            }
-                        });
+                        
 
                         vBox.setOnMouseEntered(new EventHandler<MouseEvent>() {
                             public void handle(MouseEvent event) {
@@ -214,9 +246,18 @@ public class StundenplanC {
                         double cellHeight = 123.0;
                         double x = event.getPickResult().getIntersectedPoint().getX();
                         double y = event.getPickResult().getIntersectedPoint().getY();
-                        double insertX = Math.floor(x / cellWidth) + 1;
-                        double insertY = Math.floor(y / cellHeight);
-                        calendarGrid.add(vBox, (int) insertX, (int) insertY);
+                        double col = Math.floor(x / cellWidth) + 1;
+                        double row = Math.floor(y / cellHeight);
+                        insertIntoTable(text, (int)col, (int)row);
+                        vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            public void handle(MouseEvent event) {
+                                if (event.getClickCount() == 2) {
+                                    calendarGrid.getChildren().remove(event.getSource());
+                                    removeFromTable((int)col, (int)row);
+                                }
+                            }
+                        });
+                        calendarGrid.add(vBox, (int) col, (int) row);
 
                     }
                     calendarGrid.getScene().setCursor(Cursor.DEFAULT);
@@ -253,7 +294,7 @@ public class StundenplanC {
     }
 
     @FXML
-    private void btAddOnClick() {
+        private void btAddOnClick() {
         Platform.runLater(() -> {
             if (einheitName != null) {
                 EinheitC.show(null, statement, getStage(), this, einheitName);
@@ -263,10 +304,51 @@ public class StundenplanC {
             }
             try {
                 init(null);
-            } catch (SQLException ex) {
-                Logger.getLogger(StundenplanC.class.getName()).log(Level.SEVERE, null, ex);
+            
+
+} catch (SQLException ex) {
+                Logger.getLogger(StundenplanC.class
+.getName()).log(Level.SEVERE, null, ex);
             }
         });
+    }
+    
+    private void insertIntoTable(String name, int col, int row) {
+        try {
+            
+            String sql
+                    = "  insert "
+                    + " into stunde (name "
+                    + "             ,col "
+                    + "             ,row "
+                    + "             ) "
+                    + " values ( '" + name + "' "
+                    + (", '" + col + "' ")
+                    + (", '" + row + "' ")
+                    + "        )";
+
+            statement.executeUpdate(sql);
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    private void removeFromTable(int col, int row) {
+        try {
+            
+            String sql
+                    = "  delete "
+                    + " from stunde "
+                    + " where col = '" + col + "' "
+                    + " and row = '" + row + "'";
+            
+
+            statement.executeUpdate(sql);
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public Stage getStage() {

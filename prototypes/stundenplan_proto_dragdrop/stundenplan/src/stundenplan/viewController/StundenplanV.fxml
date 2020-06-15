@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TreeView?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bpRoot" maxHeight="1000.0" maxWidth="1920.0" minWidth="400.0" prefHeight="1000.0" prefWidth="1920.0" styleClass="root" stylesheets="@../style/stundenplan.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stundenplan.viewController.StundenplanC">
+<BorderPane fx:id="bpRoot" maxHeight="1000.0" maxWidth="1920.0" minWidth="400.0" prefHeight="1000.0" prefWidth="1920.0" styleClass="root" stylesheets="@../style/stundenplan.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stundenplan.viewController.StundenplanC">
     <left>
         <VBox maxWidth="200.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT">
             <children>
@@ -26,10 +25,10 @@
                     <children>
                         <HBox prefHeight="586.0" prefWidth="200.0">
                             <children>
-                        <TreeView id="tvEinheiten" fx:id="tvEinheiten" prefHeight="200.0" prefWidth="200.0" />
+                        <TreeView id="tvEinheiten" fx:id="tvEinheiten" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="710.0" prefWidth="200.0" />
                             </children>
                         </HBox>
-                        <HBox alignment="BOTTOM_LEFT" maxHeight="100.0" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="BOTTOM_LEFT">
+                        <HBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="76.0" StackPane.alignment="BOTTOM_LEFT">
                             <children>
                                 <Button fx:id="btAdd" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#btAddOnClick" styleClass="add_button" stylesheets="@../style/stundenplan.css" text="+" textAlignment="CENTER" textOverrun="CLIP">
                                     <HBox.margin>
@@ -231,40 +230,7 @@
         <VBox prefHeight="175.0" prefWidth="1720.0" BorderPane.alignment="CENTER_RIGHT">
             <children>
                 <StackPane styleClass="stackpane_top" stylesheets="@../style/stundenplan.css">
-                    <HBox alignment="BOTTOM_LEFT" prefHeight="175.0" styleClass="menu" stylesheets="@../style/stundenplan.css">
-                        <children>
-                     <VBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="1726.0" styleClass="menu_background" stylesheets="@../style/stundenplan.css">
-                        <children>
-                           <HBox alignment="BOTTOM_LEFT" maxHeight="50.0" prefWidth="1732.0">
-                              <children>
-                                        <Button mnemonicParsing="false" styleClass="button_menu" stylesheets="@../style/stundenplan.css">
-                                    <graphic>
-                                       <ImageView fitHeight="17.0" fitWidth="17.0" rotate="180.0">
-                                          <image>
-                                             <Image url="@../img/arrow.png" />
-                                          </image>
-                                       </ImageView>
-                                    </graphic>
-                                        </Button>
-                                        <DatePicker />
-                                        <Button mnemonicParsing="false" styleClass="button_menu" stylesheets="@../style/stundenplan.css">
-                                    <graphic>
-                                       <ImageView fitHeight="17.0" fitWidth="17.0">
-                                          <image>
-                                             <Image url="@../img/arrow.png" />
-                                          </image>
-                                       </ImageView>
-                                    </graphic>
-                                        </Button>
-                              </children>
-                           </HBox>
-                        </children>
-                        <HBox.margin>
-                           <Insets left="10.0" />
-                        </HBox.margin>
-                     </VBox>
-                        </children>
-                    </HBox>
+                    <HBox alignment="BOTTOM_LEFT" prefHeight="175.0" styleClass="menu" stylesheets="@../style/stundenplan.css" />
                <VBox alignment="TOP_RIGHT" fillWidth="false" maxHeight="40.0" maxWidth="100.0" prefHeight="40.0" prefWidth="100.0" styleClass="logo_top" stylesheets="@../style/stundenplan.css" StackPane.alignment="TOP_RIGHT">
                   <StackPane.margin>
                      <Insets right="20.0" top="10.0" />

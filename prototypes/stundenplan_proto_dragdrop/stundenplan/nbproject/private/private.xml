@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Ibo/Desktop/stundenplan/src/einheit/model/Stunde.java</file>
+            <file>file:/C:/Users/Ibo/Desktop/stundenplan/src/teacher/model/addTeacherTest.sql</file>
+            <file>file:/C:/Users/Ibo/Desktop/stundenplan/src/stundenplan/viewController/StundenplanC.java</file>
+            <file>file:/C:/Users/Ibo/Desktop/stundenplan/src/stundenplan/db/init_db.sql</file>
+            <file>file:/C:/Users/Ibo/Desktop/stundenplan/src/einheit/model/Einheit.java</file>
+            <file>file:/C:/Users/Ibo/Desktop/stundenplan/src/stundenplan/viewController/TheMain.java</file>
+        </group>
     </open-files>
 </project-private>
