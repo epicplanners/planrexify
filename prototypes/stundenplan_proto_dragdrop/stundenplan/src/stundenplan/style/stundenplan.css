@@ -3,9 +3,6 @@
 }
 .calendar_pane {
     -fx-box-border: transparent;
-    -fx-hgap: 5;
-    -fx-vgap: 5;
-    -fx-grid-lines-visible: false;
     -fx-background-color: #fff;
 }
 
@@ -99,4 +96,8 @@
 .tree-cell:expanded {
     -fx-padding: 0.25em 0em 0.25em 0em ;
     -fx-border-color: transparent;
+}
+
+.addGrid {
+    -fx-background-color: #f9f9f9;
 }

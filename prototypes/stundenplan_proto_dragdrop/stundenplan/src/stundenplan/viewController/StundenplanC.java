@@ -135,6 +135,8 @@ public class StundenplanC {
         if (update != null) {
             setTvRoot();
         }
+        
+        calendarGrid.setGridLinesVisible(false);
 
         tvEinheiten.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
@@ -151,7 +153,6 @@ public class StundenplanC {
             public void handle(MouseEvent event) {
                 tvEinheiten.setMouseTransparent(true);
                 event.setDragDetect(true);
-                System.out.println("hey");
             }
         });
 
@@ -176,6 +177,8 @@ public class StundenplanC {
 
         tvEinheiten.setOnMouseReleased(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
+                calendarGrid.getStyleClass().removeAll("addGrid");
+                calendarGrid.setGridLinesVisible(false);
                 tvEinheiten.setMouseTransparent(false);
                 if (isDragged) {
                     String node = event.getPickResult().getIntersectedNode().toString();
@@ -214,7 +217,7 @@ public class StundenplanC {
                         double insertX = Math.floor(x / cellWidth) + 1;
                         double insertY = Math.floor(y / cellHeight);
                         calendarGrid.add(vBox, (int) insertX, (int) insertY);
-                        
+
                     }
                     calendarGrid.getScene().setCursor(Cursor.DEFAULT);
                 } else {
@@ -237,6 +240,8 @@ public class StundenplanC {
                 isDragged = true;
                 event.setDragDetect(false);
                 calendarGrid.getScene().setCursor(Cursor.CLOSED_HAND);
+                calendarGrid.getStyleClass().add("addGrid");
+                calendarGrid.setGridLinesVisible(true);
             }
         });
 
