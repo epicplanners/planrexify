@@ -49,6 +49,8 @@ public class TeacherC {
 
     private static StundenplanC parentControll;
 
+    private Teacher existingTeacher;
+
     // Verbindung zur Datenbank
     private Statement statement;
 
@@ -136,10 +138,15 @@ public class TeacherC {
 
     @FXML
     private void btSaveOnClick(ActionEvent event) throws SQLException {
-        save();
+        if (btSave.getText() == "update") {
+            save(true);
+            btSave.setText("save");
+        } else {
+            save(false);
+        }
     }
 
-    private void save() throws SQLException {
+    private void save(boolean setUpdate) throws SQLException {
         if (tfNn.getText() == null
                 || tfNn.getText().trim().length() == 0
                 || tfVn.getText() == null
@@ -148,20 +155,27 @@ public class TeacherC {
             return;
         }
 
+        if (setUpdate) {
+            current.update(statement, existingTeacher);
+            ((Stage) (vbRoot.getScene().getWindow())).close();
+            parentControll.init(null);
+            return;
+        }
+
         shouldUpdate = false;
-        Teacher existingTeacher = current.findTeacherByName(statement, tfVn.getText(), tfNn.getText());
-        System.out.println(existingTeacher);
+        existingTeacher = current.findTeacherByName(statement, tfVn.getText(), tfNn.getText());
         if (existingTeacher != null) {
             shouldUpdate = true;
         }
 
         if (!shouldUpdate) {
             current.create(statement);
+            ((Stage) (vbRoot.getScene().getWindow())).close();
+            parentControll.init(null);
         } else {
-            current.update(statement, existingTeacher);
+            tfVn.setText("");
+            tfNn.setText("");
+            btSave.setText("update");
         }
-
-        ((Stage) (vbRoot.getScene().getWindow())).close();
-        parentControll.init(null);
     }
 }

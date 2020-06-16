@@ -30,6 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import teacher.model.Teacher;
 import teacher.viewController.*;
 
 /**
@@ -209,7 +210,11 @@ public class StundenplanC {
                         if (tvEinheiten.getSelectionModel().getSelectedItem().getValue().toString() != null) {
                             einheitName = tvEinheiten.getSelectionModel().getSelectedItem().getValue().toString();
                             System.out.println(einheitName);
-                            btAddOnClick();
+                            try {
+                                btAddOnClick();
+                            } catch (SQLException ex) {
+                                Logger.getLogger(StundenplanC.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
                 }
@@ -236,20 +241,22 @@ public class StundenplanC {
     }
 
     @FXML
-    private void btAddOnClick() {
-        Platform.runLater(() -> {
-            if (einheitName != null) {
-                EinheitC.show(null, statement, getStage(), this, einheitName);
-                einheitName = null;
-            } else {
-                EinheitC.show(null, statement, getStage(), this, null);
-            }
-            try {
-                init(null);
-            } catch (SQLException ex) {
-                Logger.getLogger(StundenplanC.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+    private void btAddOnClick() throws SQLException {
+        if (Teacher.findAllTeacher(statement).size() != 0) {
+            Platform.runLater(() -> {
+                if (einheitName != null) {
+                    EinheitC.show(null, statement, getStage(), this, einheitName);
+                    einheitName = null;
+                } else {
+                    EinheitC.show(null, statement, getStage(), this, null);
+                }
+                try {
+                    init(null);
+                } catch (SQLException ex) {
+                    Logger.getLogger(StundenplanC.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+        }
     }
 
     public Stage getStage() {

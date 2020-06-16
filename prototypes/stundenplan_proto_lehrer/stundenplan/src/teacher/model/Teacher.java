@@ -161,10 +161,10 @@ public class Teacher {
 
         String sql
                 = " update lehrer "
-                + " set nachname = '" + nname + "', "
-                + " vorname = '" + vname + "'"
-                + " where nachname like '" + existingTeacher.getNname() + "'"
-                + " and vorname like '" + existingTeacher.getVname() + "'";
+                + " set nachname = '" + nname.get() + "', "
+                + " vorname = '" + vname.get() + "'"
+                + " where nachname like '" + existingTeacher.getNname().get() + "'"
+                + " and vorname like '" + existingTeacher.getVname().get() + "'";
 
         System.out.println(sql);
         statement.executeUpdate(sql);
