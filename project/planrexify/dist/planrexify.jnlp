@@ -8,8 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="lib\derbyclient.jar" size="588394" download="eager" />
-    <jar href="planrexify.jar" size="38306" download="eager" />
+    <jar href="lib/derbyclient.jar" size="585704" download="eager" />
+    <jar href="planrexify.jar" size="450350" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="planrexify" >
     <param name="requiredFXVersion" value="8.0+"/>

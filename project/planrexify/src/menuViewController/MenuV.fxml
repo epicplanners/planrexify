@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuViewController.MenuC">
+<VBox fx:id="background" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="background" stylesheets="@../style/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuViewController.MenuC">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="360.0" prefWidth="640.0" styleClass="box" stylesheets="@../main.css">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="360.0" prefWidth="640.0" styleClass="box">
          <VBox.margin>
-            <Insets left="320.0" right="320.0" top="180.0" />
+            <Insets />
          </VBox.margin>
          <center>
             <HBox fx:id="displayLogo" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="menuImageIcon" fitHeight="128.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@icon.png" />
+                        <Image url="@../img/icon.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="menuImageText" fitHeight="105.0" fitWidth="406.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menuImageText.png" />
+                        <Image url="@../img/menuImageText.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -32,5 +33,23 @@
                </children>
             </HBox>
          </center></BorderPane>
+      <VBox alignment="TOP_CENTER" maxWidth="640.0" prefHeight="100.0" prefWidth="640.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0">
+               <children>
+                  <HBox alignment="CENTER" prefWidth="320.0">
+                     <children>
+                        <Button fx:id="btKalender" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #E8A87C;" styleClass="menuButton" text="Kalender" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefWidth="320.0">
+                     <children>
+                        <Button fx:id="btStundenplan" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #D87694;" styleClass="menuButton" text="Stundenplan" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </VBox>
