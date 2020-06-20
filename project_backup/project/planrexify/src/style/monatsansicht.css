@@ -1,0 +1,120 @@
+.root {
+    -fx-background-color: #fff;
+}
+
+.calendar_pane {
+    -fx-box-border: transparent;
+    -fx-hgap: 5;
+    -fx-vgap: 5;
+    -fx-grid-lines-visible: false;
+    -fx-background-color: #fff;
+}
+
+.wochentag {
+    -fx-border-color: #6C6C6C;
+    -fx-border-width: 0 0 1 0;
+    -fx-text-fill: #6C6C6C;
+}
+
+.zeitpunkt {
+    -fx-border-color: #6C6C6C;
+    -fx-border-width: 0 0 1 0;
+    -fx-text-fill: #6C6C6C;
+}
+
+.einheit {
+    -fx-background-color: #E8A77D;
+    -fx-padding: 20;
+    -fx-border-insets: 5;
+    -fx-background-insets: 5;
+    -fx-background-radius: 5 5 5 5;
+}
+
+.add_button {
+    -fx-background-radius: 5em;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-background-color: #FFAD04;
+    -fx-text-fill: #fff;
+    -fx-font-weight: 900;
+    -fx-padding: 0;
+    -fx-textAlignment: CENTER;
+    -fx-line-spacing: 40px;
+    -fx-label-padding: 0;
+}
+
+.remove_border {
+    -fx-box-border: transparent;
+}
+
+.clouds {}
+
+.menu {
+    /*-fx-background-color: #E8A77D;*/
+    -fx-padding: 20;
+    -fx-background-image: url("../img/clouds.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1720 800;
+    -fx-background-position: bottom left;
+}
+
+.button_menu {
+    /*#303133*/
+    -fx-background-color: transparent;
+    -fx-text-fill: #000;
+    -fx-font-weight: 900;
+}
+
+.logo_top {
+    -fx-background-color: #fff;
+    -fx-background-radius: 5 5 5 5;
+}
+
+.menu_background {
+    -fx-background-color: #fff;
+    -fx-background-radius: 5 5 5 5;
+}
+
+.stackpane_menu {
+    -fx-padding: 0;
+    -fx-spacing: 0;
+}
+
+.current {
+    /* -fx-background-color: #000;*/
+    -fx-border-color: #63B9A0;
+    -fx-border-width: 5;
+    -fx-boder-insets: -1;
+}
+
+.list-view {
+    -fx-background-insets: 0 1 0 1; 
+    -fx-padding: 1; 
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.big {
+    -fx-font-size: 20;
+}
+
+.calendarGrid > .table-cell{
+    -fx-pref-height: 50;
+    -fx-min-height: 50;
+}
+
+.btBack {
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-pref-height: 36pt;
+    -fx-pref-width: 96pt;
+    -fx-padding: 8pt 16pt 8pt 16pt;
+}

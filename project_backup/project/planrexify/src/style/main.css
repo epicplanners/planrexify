@@ -1,0 +1,18 @@
+.background {
+    -fx-background-color: #40b3a2;
+}
+
+.box {
+    -fx-background-color: white;
+    -fx-background-radius: 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.menuButton {
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-pref-height: 36pt;
+    -fx-pref-width: 96pt;
+    -fx-padding: 8pt 16pt 8pt 16pt;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
