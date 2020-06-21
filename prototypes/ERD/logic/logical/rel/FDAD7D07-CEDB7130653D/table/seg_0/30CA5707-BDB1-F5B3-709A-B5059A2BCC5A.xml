@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="30CA5707-BDB1-F5B3-709A-B5059A2BCC5A" name="unterrichtet">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<ownerDesignName>logical</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Einheit_Einheit_ID" id="CD85B897-C309-5C74-4D68-78D1AC263832">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<ownerDesignName>logical</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5AE5053F-7469-1121-6240-DBF089DD730F" referredColumn="1B799CA8-E647-37ED-70CA-BD4BF6996A3D"/>
+</associations>
+</Column>
+<Column name="Lehrer_Lehrer_ID" id="C1869222-1EC7-3D12-193D-531761BA2E57">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<ownerDesignName>logical</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="25B79B9A-6CB0-ACF2-A60C-B5C602FD797E" referredColumn="4AC0E31B-251B-FE3E-4CDB-D5330CBA527D"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D227B65F-8061-90FC-BB91-5B317624446B" name="unterrichtet_PK">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<ownerDesignName>logical</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD85B897-C309-5C74-4D68-78D1AC263832"/>
+<colUsage columnID="C1869222-1EC7-3D12-193D-531761BA2E57"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BF20AFF2-F2F9-E7B8-9580-81DF8D170931" name="unterrichtet_Einheit_FK">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<generatorID>1D22B853-6EB1-B53D-7E56-E953753C4CDC</generatorID>
+<ownerDesignName>logical</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD85B897-C309-5C74-4D68-78D1AC263832"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2EEA09C6-F2C0-EB78-434A-B162361564DA" name="unterrichtet_Lehrer_FK">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<generatorID>1D22B853-6EB1-B53D-7E56-E953753C4CDC</generatorID>
+<ownerDesignName>logical</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C1869222-1EC7-3D12-193D-531761BA2E57"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
