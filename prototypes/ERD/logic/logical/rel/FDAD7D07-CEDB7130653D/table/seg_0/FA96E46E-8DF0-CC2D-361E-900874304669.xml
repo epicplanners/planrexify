@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FA96E46E-8DF0-CC2D-361E-900874304669" name="Einheit">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>6758D3B4-ACF3-72E8-F254-278CE66D7726</generatorID>
+<ownerDesignName>logical</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="9287263F-B497-E992-D2D6-E3AFD15AB7F5">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>972EA1AF-C7D7-9FF2-48EB-BD6EB72E7026</generatorID>
+<ownerDesignName>logical</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Raum" id="46C2B741-393F-B3A2-3410-DAA5372061F1">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>C1E0646B-BE30-40AF-0119-4C688D11497F</generatorID>
+<ownerDesignName>logical</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3</dataTypeSize>
+<ownDataTypeParameters>3,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notizen" id="C4E88DD6-A422-DEDC-45F3-2CA8849A1CFF">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>EC7763F6-B7D5-3E91-6B57-701D53AC0DFE</generatorID>
+<ownerDesignName>logical</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3000</dataTypeSize>
+<ownDataTypeParameters>3000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheit_ID" id="D494DE84-2896-BE99-0BF4-4B2CCE979674">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<ownerDesignName>logical</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Lehrer_Lehrer_ID" id="0E2C8C84-7634-3FE9-26D8-B02CC8B25D87">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<ownerDesignName>logical</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="69A2C289-3BAB-E7FE-137D-4F6A028F6E98" referredColumn="CAC39FAD-9CA0-1986-F63A-DA0E9BD4B2E7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="07D97C82-EBCA-EB51-04D0-A89504A7A946" name="Einheit_PK">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<ownerDesignName>logical</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D494DE84-2896-BE99-0BF4-4B2CCE979674"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="76F425C8-221A-3002-783E-098A2389DFDA" name="Einheit_Lehrer_FK">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>69654F70-4EC5-CD48-B9C4-6C924AE82F21</generatorID>
+<ownerDesignName>logical</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0E2C8C84-7634-3FE9-26D8-B02CC8B25D87"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

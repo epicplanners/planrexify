@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="64904CED-0176-2215-801F-A1C33030C729" name="Termin">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>8BB22B7F-2045-0F38-16A4-4248E03F0A5A</generatorID>
+<ownerDesignName>relational</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="titel" id="C9C04E08-2D23-C593-3245-21787852CF89">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>723BCC04-374B-F21E-DFE4-441439EF0D42</generatorID>
+<ownerDesignName>relational</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Start" id="79D3142A-3E1A-622E-3E60-6A5071D71B94">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>5302219D-95E1-04A0-BE43-5DF8EDCF3CD7</generatorID>
+<ownerDesignName>relational</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ende" id="472138BE-25C4-F8E1-BF2F-3EA8605587EF">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>AC8D2206-1303-2EDB-9508-80C59A2B30AD</generatorID>
+<ownerDesignName>relational</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ort" id="E38E4D9A-CA04-E543-746E-793D93E0A576">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>54C64D58-1032-7999-6A94-1D53396BFE76</generatorID>
+<ownerDesignName>relational</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beschreibung" id="C1EE0DAB-FF2D-4472-746E-AC086A914094">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>8FC337EE-837E-76BB-975A-67B98DFA3CC5</generatorID>
+<ownerDesignName>relational</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Termin_ID" id="CFBAEB38-CC2C-78ED-E8BB-BF8EC53C0003">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<ownerDesignName>relational</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="479CC6E6-163D-44E4-6025-33E13D3DC660" name="Termin_PK">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<ownerDesignName>relational</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="CFBAEB38-CC2C-78ED-E8BB-BF8EC53C0003"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

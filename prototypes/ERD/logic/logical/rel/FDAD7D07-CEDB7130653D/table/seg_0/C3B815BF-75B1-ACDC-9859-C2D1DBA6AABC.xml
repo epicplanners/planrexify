@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C3B815BF-75B1-ACDC-9859-C2D1DBA6AABC" name="Lehrer">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>9AA00DDB-2894-5E55-E7FF-84BC5FFF9BC7</generatorID>
+<ownerDesignName>logical</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Nachname" id="7AE330F0-F8E1-77BB-882B-F63C537F291A">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>49C4393C-51C4-CCD0-2D29-44E82F7F44CB</generatorID>
+<ownerDesignName>logical</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vorname" id="2022F27C-9674-66C6-8DEE-BBFEF953432F">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<generatorID>C44E4F98-E79A-190A-AABA-3097FD125343</generatorID>
+<ownerDesignName>logical</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Lehrer_ID" id="CAC39FAD-9CA0-1986-F63A-DA0E9BD4B2E7">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<ownerDesignName>logical</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9332F6A2-FC1B-9A27-49FC-89421897893A" name="Lehrer_PK">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 15:14:12 UTC</createdTime>
+<ownerDesignName>logical</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="CAC39FAD-9CA0-1986-F63A-DA0E9BD4B2E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
