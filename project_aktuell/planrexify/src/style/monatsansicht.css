@@ -102,10 +102,6 @@
    -fx-background-color: transparent;
 }
 
-.big {
-    -fx-font-size: 20;
-}
-
 .calendarGrid > .table-cell{
     -fx-pref-height: 50;
     -fx-min-height: 50;

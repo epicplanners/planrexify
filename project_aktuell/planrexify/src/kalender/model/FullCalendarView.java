@@ -5,20 +5,16 @@ import java.sql.Statement;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
@@ -30,21 +26,22 @@ import termin.viewController.TerminC;
 public class FullCalendarView {
 
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(35);
-    private VBox view;
+    private final VBox view;
     private Text calendarTitle;
 
-    private Statement statement;
+    private final Statement statement;
 
-    private Stage stage;
-    private KalenderC kalenderC;
+    private final Stage stage;
+    private final KalenderC kalenderC;
 
     private final ObjectProperty<YearMonth> currentYearMonth = new SimpleObjectProperty<>();
 
     /**
-     * Create a calendar view
      *
      * @param yearMonth year month to create the calendar of
      * @param statement
+     * @param stage
+     * @param kalenderC
      * @throws java.sql.SQLException
      */
     public FullCalendarView(YearMonth yearMonth, Statement statement, Stage stage, KalenderC kalenderC) throws SQLException {
@@ -52,12 +49,12 @@ public class FullCalendarView {
         this.stage = stage;
         this.kalenderC = kalenderC;
         currentYearMonth.set(yearMonth);
-        // Create the calendar grid pane
+        // Kalender GridPane
         GridPane calendar = new GridPane();
         calendar.setPrefSize(1400, 840);
         calendar.alignmentProperty().set(Pos.CENTER);
         calendar.setGridLinesVisible(true);
-        // Create rows and columns with anchor panes for the calendar
+        // Kalender Reihen und Spalten
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
                 AnchorPaneNode ap = new AnchorPaneNode();
@@ -67,54 +64,63 @@ public class FullCalendarView {
                 allCalendarDays.add(ap);
             }
         }
-        // Days of the week labels
-        Text[] dayNames = new Text[]{new Text("Monday"), new Text("Tuesday"),
-            new Text("Wednesday"), new Text("Thursday"), new Text("Friday"),
-            new Text("Saturday"), new Text("Sunday")};
-        
+        // Tage-Labels
+        Text[] dayNames = new Text[]{new Text("Mo."), new Text("Di."),
+            new Text("Mi."), new Text("Do."), new Text("Fr."),
+            new Text("Sa."), new Text("So.")};
+
         GridPane dayLabels = new GridPane();
         dayLabels.setPrefWidth(1400);
-        
-        dayLabels.getStyleClass().add("big");
+       
         Integer col = 0;
         for (Text txt : dayNames) {
             AnchorPane ap = new AnchorPane();
             ap.setPrefSize(200, 50);
             
+            txt.setStyle("-fx-font-size: 16px;");
+
             ap.setBottomAnchor(txt, 5.0);
             ap.getChildren().add(txt);
             dayLabels.add(ap, col++, 0);
         }
-        // Populate calendar with the appropriate day numbers
+        // Populate calendar (Kalendertage)
         populateCalendar(yearMonth);
-        // Create the calendar view
+
         view = new VBox(dayLabels, calendar);
+        view.setMaxSize(1200, 850);
+        view.alignmentProperty().set(Pos.CENTER);
     }
 
     /**
-     * Set the days of the calendar to correspond to the appropriate date
      *
      * @param yearMonth year and month of month to render
      */
     public void populateCalendar(YearMonth yearMonth) throws SQLException {
-        // Get the date we want to start with on the calendar
+
+        // Startdatum
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
-        // Dial back the day until it is SUNDAY (unless the month starts on a sunday)
+
+        // Zeilenumbruch nach jedem Sonntag
         while (!calendarDate.getDayOfWeek().toString().equals("MONDAY")) {
             calendarDate = calendarDate.minusDays(1);
         }
-        // Populate the calendar with day numbers
+
+        // Kalender mit Kalendertagen
         for (AnchorPaneNode ap : allCalendarDays) {
-            //Termin.findAll(statement, calendarDate);
+
+            //alte Kalendertage werden entfernt
             ap.getChildren().clear();
             ap.getStyleClass().remove("current");
 
+            //Text mit Kalendertag
             Text txt = new Text(String.valueOf(calendarDate.getDayOfMonth()));
+            //Kalendertag wird gesetzt
             ap.setDate(calendarDate);
             ap.setTopAnchor(txt, 5.0);
             ap.setLeftAnchor(txt, 5.0);
             ap.getChildren().add(txt);
 
+            //Listview mit Terminen an diesem Tag
             ListView lv = new ListView();
 
             lv.setPrefSize(200, 100);
@@ -124,35 +130,37 @@ public class FullCalendarView {
             ap.getChildren().add(lv);
 
             lv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+            //alle Termine an diesem Tag
             ObservableList<Termin> listTermin = Termin.findAll(statement, calendarDate);
 
-            lv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                public void handle(MouseEvent event) {
-
-                    if (lv.getSelectionModel().getSelectedItem() != null) {
-                        Platform.runLater(() -> {
-                            TerminC.show(null, statement, stage, kalenderC, (Termin) lv.getSelectionModel().getSelectedItem());
-                        });
-                    }
-
+            //MouseEvent bei Klick
+            //Termin soll geändert werden können
+            lv.setOnMouseClicked((MouseEvent event) -> {
+                if (lv.getSelectionModel().getSelectedItem() != null) {
+                    Platform.runLater(() -> {
+                        TerminC.show(null, statement, stage, kalenderC, (Termin) lv.getSelectionModel().getSelectedItem());
+                    });
                 }
             });
 
+            //Termine werden in die Lsitview eingefügt
             lv.setItems(listTermin);
 
+            //aktueller Tag wird markiert
             if (calendarDate.isEqual(LocalDate.now())) {
                 ap.getStyleClass().add("current");
             }
 
+            //Zähler wird erhöht
             calendarDate = calendarDate.plusDays(1);
         }
-        // Change the title of the calendar
-        //calendarTitle.setText(yearMonth.getMonth().toString() + " " + String.valueOf(yearMonth.getYear()));
     }
 
     /**
-     * Move the month back by one. Repopulate the calendar with the correct
-     * dates.
+     * Monat eins zurück dates.
+     *
+     * @throws java.sql.SQLException
      */
     public void previousMonth() throws SQLException {
         currentYearMonth.set(currentYearMonth.get().minusMonths(1));
@@ -160,12 +168,13 @@ public class FullCalendarView {
     }
 
     /**
-     * Move the month forward by one. Repopulate the calendar with the correct
-     * dates.
+     * Monat eins nach vorn dates.
+     *
+     * @throws java.sql.SQLException
      */
     public void nextMonth() throws SQLException {
         currentYearMonth.set(currentYearMonth.get().plusMonths(1));
-        populateCalendar(currentYearMonth.get());;
+        populateCalendar(currentYearMonth.get());
     }
 
     public VBox getView() {

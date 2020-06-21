@@ -96,8 +96,6 @@ public class KalenderC {
             if (stage == null) {
                 stage = new Stage();
             }
-            
-            
 
             stage.setScene(scene);
             stage.setTitle("Kalender");

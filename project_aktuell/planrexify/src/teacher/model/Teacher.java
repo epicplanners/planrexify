@@ -1,12 +1,9 @@
 package teacher.model;
 
 import einheit.model.Einheit;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.beans.property.ObjectProperty;
@@ -25,12 +22,7 @@ public class Teacher {
 
     private final List<Einheit> einheiten;
 
-    /**
-     * NoArg-Konstruktor.
-     * <br>
-     * Erzeugt ein leeeres Model, dass in Folge mit Daten gefüllt und der
-     * Datenbank synchronisert werden kann.
-     */
+
     public Teacher() {
         nname.setValue(null);
         vname.setValue(null);
@@ -39,20 +31,16 @@ public class Teacher {
 
     public void addEinheit(Einheit newEinheit) {
         if (!einheiten.contains(newEinheit)) {
-            // Richtung Person -> Konto
             this.einheiten.add(newEinheit);
 
-            // Richtung Konto -> Person
             newEinheit.setTeacher(this);
         }
     }
 
     public void removeEinheit(Einheit oldEinheit) {
         if (this.einheiten.contains(oldEinheit)) {
-            // Richtung Person -> Konto
             this.einheiten.remove(oldEinheit);
 
-            // Richtung Konto -> Person
             oldEinheit.setTeacher(null);
         }
 

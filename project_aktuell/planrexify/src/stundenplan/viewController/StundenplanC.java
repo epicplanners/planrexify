@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stundenplan.viewController;
 
 import einheit.model.*;
@@ -35,10 +30,7 @@ import kalender.viewController.KalenderC;
 import teacher.model.Teacher;
 import teacher.viewController.*;
 
-/**
- *
- * @author Jan Donnerbauer
- */
+
 public class StundenplanC {
 
     @FXML
@@ -116,8 +108,6 @@ public class StundenplanC {
     }
 
     private void setTvRoot() {
-        // Sollte eigentlich den ganzen Inhalt der tvEinheiten Löschen
-        // Tut es aber nicht :/
         tvEinheiten.setRoot(null);
         tvRoot = new TreeItem<>(new Einheit());
         tvEinheiten.setRoot(tvRoot);
@@ -248,7 +238,6 @@ public class StundenplanC {
                     }
                     calendarGrid.getScene().setCursor(Cursor.DEFAULT);
                 } else {
-                    System.out.println("not dragged");
                     if (tvEinheiten.getSelectionModel().getSelectedItem() != null) {
                         if (tvEinheiten.getSelectionModel().getSelectedItem().getValue().toString() != null) {
                             einheitName = tvEinheiten.getSelectionModel().getSelectedItem().getValue().toString();

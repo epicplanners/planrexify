@@ -1,27 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package termin.viewController;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.ObjectBinding;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,32 +18,16 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
-import javafx.util.converter.LocalTimeStringConverter;
 import kalender.viewController.KalenderC;
 import termin.model.Termin;
 import timespinner.*;
 
-/**
- * FXML Controller class
- *
- * @author Jan Donnerbauer
- */
 public class TerminC {
 
-    @FXML
-    private Label wiederholenLa;
-    @FXML
-    private ChoiceBox<?> wiederholenCb;
-    @FXML
-    private Label benachrichtigungLa;
-    @FXML
-    private ChoiceBox<?> benachrichtigungCb;
     @FXML
     private Label beschreibungLa;
     @FXML
@@ -83,7 +55,6 @@ public class TerminC {
 
     TimeSpinner spinner_end;
 
-    // Controller für diese View
     private final static String VIEWNAME = "TerminV.fxml";
 
     private static KalenderC parentControll;
@@ -146,8 +117,6 @@ public class TerminC {
         if (termin != null) {
             spinner_start = new TimeSpinner(termin.startTimeProperty().get());
             spinner_end = new TimeSpinner(termin.endTimeProperty().get());
-            //System.out.println(termin.startTimeProperty().get());
-            //System.out.println(spinner_start.valueProperty());
 
             old = true;
             reset_display(termin);
@@ -202,14 +171,12 @@ public class TerminC {
 
             System.out.println(current.endDateProperty());
 
-//tfStartTime.textProperty().bindBidirectional(current.startTimeProperty());
         }
     }
 
     @FXML
     private void btSaveOnClick(ActionEvent event) {
         save();
-        //System.out.println("moinnn");
     }
 
     private void save() {
@@ -225,7 +192,6 @@ public class TerminC {
 
             ((Stage) (vbRoot.getScene().getWindow())).close();
             parentControll.init(parentControll);
-            //parentControll.init();
         } catch (SQLException ex) {
             Logger.getLogger(TerminC.class.getName()).log(Level.SEVERE, null, ex);
         }

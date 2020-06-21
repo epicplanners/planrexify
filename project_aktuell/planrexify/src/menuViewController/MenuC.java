@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.animation.FillTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -16,8 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import kalender.viewController.KalenderC;
@@ -71,10 +68,8 @@ public class MenuC {
     }
 
     private void init() {
-//        displayLogo.setPreserveRatio(false);
-
-//        displayLogo.fitWidthProperty().bind(stage.widthProperty());
-//        displayLogo.fitHeightProperty().bind(Bindings.subtract(stage.heightProperty(), Bindings.add(Bindings.add(hboxControlls.heightProperty(), tfMsg.heightProperty()), 90)));
+        
+        //Start-Animation
         menuImageIcon.setTranslateX(-5000);
         menuImageText.setTranslateX(5000);
 
@@ -90,10 +85,12 @@ public class MenuC {
         timeline.getKeyFrames().add(kfText);
         timeline.play();
 
+        //Navigations zu Kalender
         btKalender.setOnMouseClicked((event) -> {
             KalenderC.show(stage, statement);
         });
-
+        
+        //Navigations zu Stundenplan
         btStundenplan.setOnMouseClicked((event) -> {
             StundenplanC.show(stage, statement);
         });
