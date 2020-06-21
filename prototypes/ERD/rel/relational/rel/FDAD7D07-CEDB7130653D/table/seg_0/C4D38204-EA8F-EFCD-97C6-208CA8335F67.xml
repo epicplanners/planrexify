@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C4D38204-EA8F-EFCD-97C6-208CA8335F67" name="Einheit">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<generatorID>6758D3B4-ACF3-72E8-F254-278CE66D7726</generatorID>
+<ownerDesignName>relational</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="C0C46DB7-6A7C-4AF8-9C91-6C9E12137990">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<generatorID>972EA1AF-C7D7-9FF2-48EB-BD6EB72E7026</generatorID>
+<ownerDesignName>relational</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Raum" id="BEFCDFCA-7F0E-56B3-400D-670A5E1E6828">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<generatorID>C1E0646B-BE30-40AF-0119-4C688D11497F</generatorID>
+<ownerDesignName>relational</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3</dataTypeSize>
+<ownDataTypeParameters>3,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notizen" id="DC60DFDD-74D1-19ED-F2BB-6B02C5BFBBFA">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<generatorID>EC7763F6-B7D5-3E91-6B57-701D53AC0DFE</generatorID>
+<ownerDesignName>relational</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3000</dataTypeSize>
+<ownDataTypeParameters>3000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Einheit_ID" id="1B799CA8-E647-37ED-70CA-BD4BF6996A3D">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<ownerDesignName>relational</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3E93178D-C6AF-04F3-9349-1BF9784FCFAC" name="Einheit_PK">
+<createdBy>Ibo</createdBy>
+<createdTime>2020-06-21 11:46:37 UTC</createdTime>
+<ownerDesignName>relational</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="1B799CA8-E647-37ED-70CA-BD4BF6996A3D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
