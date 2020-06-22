@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="planrexify">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/planrexify.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

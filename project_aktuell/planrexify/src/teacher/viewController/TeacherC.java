@@ -21,6 +21,7 @@ import teacher.model.Teacher;
 
 public class TeacherC {
 
+    // FXML Variablen
     @FXML
     private VBox vbRoot;
     @FXML
@@ -32,22 +33,25 @@ public class TeacherC {
     @FXML
     private Button btSave;
 
+    // Viewname
     private final static String VIEWNAME = "TeacherV.fxml";
-
+    // parentControll (Stundenplan)
     private static StundenplanC parentControll;
-
+    // Lehrer der Upgedated werden soll
     private Teacher existingTeacher;
 
     // Verbindung zur Datenbank
     private Statement statement;
-
+    // derzeitiger Lehrer
     private Teacher current;
-
+    // soll der Lehrer geupdated werden?
     private boolean shouldUpdate = false;
-
+    // User der angezeigt werden soll
     private static String displayUser;
+    // altes Fach
     private String oldFach = null;
 
+    // FXML laden und anzeigen
     public static void show(Stage stage, Statement statement, Stage parent, StundenplanC parentC, String displayUser) {
         try {
             // View und Controller erstellen
@@ -92,10 +96,12 @@ public class TeacherC {
         }
     }
 
+    // Initialisierung
     private void init() throws SQLException {
         setCurrent(new Teacher());
     }
 
+    // derzeitigen Lehrer setzen
     private void setCurrent(Teacher teacher) {
         // alte Bindings mit Controls entfernen
         if (current != null) {
@@ -113,16 +119,20 @@ public class TeacherC {
         }
     }
 
+    // wenn Savebutton geklickt wird
     @FXML
     private void btSaveOnClick(ActionEvent event) throws SQLException {
+        // wenn Button auf update ist
         if (btSave.getText() == "update") {
             save(true);
             btSave.setText("save");
         } else {
+            // Lehrer soll nicht upgedated werden
             save(false);
         }
     }
 
+    // Lehrer speichern
     private void save(boolean setUpdate) throws SQLException {
         if (tfNn.getText() == null
                 || tfNn.getText().trim().length() == 0
@@ -132,6 +142,7 @@ public class TeacherC {
             return;
         }
 
+        // wenn der Lehrer gupdated werden soll
         if (setUpdate) {
             current.update(statement, existingTeacher);
             ((Stage) (vbRoot.getScene().getWindow())).close();
@@ -139,17 +150,20 @@ public class TeacherC {
             return;
         }
 
+        // Lehrer finden
         shouldUpdate = false;
         existingTeacher = current.findTeacherByName(statement, tfVn.getText(), tfNn.getText());
         if (existingTeacher != null) {
             shouldUpdate = true;
         }
 
+        // soll der User geupdated werden
         if (!shouldUpdate) {
             current.create(statement);
             ((Stage) (vbRoot.getScene().getWindow())).close();
             parentControll.init(null);
         } else {
+            // wenn ja dann View reseten
             tfVn.setText("");
             tfNn.setText("");
             btSave.setText("update");

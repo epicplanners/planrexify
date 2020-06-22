@@ -43,13 +43,20 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btAddTeacher" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#btAddTeacherOnClick" styleClass="add_button" text="👤" textAlignment="CENTER">
+                              <Button fx:id="btAddTeacher" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#btAddTeacherOnClick" styleClass="add_button" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Bold" size="39.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="40.0" fitWidth="40.0">
+                                       <image>
+                                          <Image url="@../../img/person.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                               </Button>
                            </children>
                         </HBox>

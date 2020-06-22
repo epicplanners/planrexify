@@ -28,6 +28,7 @@ public class Termin {
     private final StringProperty ort = new SimpleStringProperty();
     private final StringProperty beschreibung = new SimpleStringProperty();
 
+    //Zeitpunkte
     private final ObjectProperty<LocalDate> start_date = new SimpleObjectProperty<>();
     private final ObjectProperty<LocalDate> end_date = new SimpleObjectProperty<>();
 
@@ -37,12 +38,15 @@ public class Termin {
     private final ObjectProperty<LocalDateTime> start_datetime = new SimpleObjectProperty<>();
     private final ObjectProperty<LocalDateTime> end_datetime = new SimpleObjectProperty<>();
 
+    //null-Konstruktor
     public Termin() {
         titel.setValue(null);
         ort.setValue(null);
         beschreibung.setValue(null);
     }
 
+    
+    //liefert alle Termine an einem bestimmten Tag
     public static ObservableList<Termin> findAll(Statement statement, LocalDate calendarDate) throws SQLException {
 
         Connection connection = statement.getConnection();
@@ -87,11 +91,15 @@ public class Termin {
             }
         }
 
+        //Liste an Terminen
         return liTermine;
     }
 
+    //neuer Termin wird erstellt
     public void create(Statement statement) throws SQLException {
 
+        
+        //Start und Enzeitpunkt werden zusammengeüfgt
         LocalTime lt_start = start_time.get();
         LocalDateTime ldt_start = lt_start.atDate(start_date.get());
 
@@ -102,16 +110,19 @@ public class Termin {
 
         System.out.println(ldt_end.toString());
 
+        //Prepared-Statement
         Connection connection = statement.getConnection();
         String query = "INSERT INTO termin (titel, start, ende, ort, beschreibung) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         pstmt.setString(1, titel.get());
 
+        //Timestamps
         Timestamp time_start = Timestamp.valueOf(ldt_start);
         pstmt.setTimestamp(2, time_start);
         Timestamp time_end = Timestamp.valueOf(ldt_end);
         pstmt.setTimestamp(3, time_end);
+        
         pstmt.setString(4, ort.get());
         pstmt.setString(5, beschreibung.get());
 
@@ -121,9 +132,6 @@ public class Termin {
         if (rs.next()) {
             System.out.println(rs.getInt(1));
             this.termin_id.set(rs.getInt(1));
-        } else {
-
-            // throw an exception from here
         }
     }
 
@@ -184,9 +192,11 @@ public class Termin {
         }
     }
 
+    //bereits bestehenden Termin ändern
     public void update(Statement statement) {
 
         try {
+            //PreparedStatement
             Connection conn = statement.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(
                     "UPDATE Termin SET titel = ?, start = ?, ende = ?, ort = ?, beschreibung = ? WHERE terminID = ? ");
@@ -194,12 +204,12 @@ public class Termin {
             LocalTime lt_start = start_time.get();
             LocalDateTime ldt_start = lt_start.atDate(start_date.get());
 
-            System.out.println(ldt_start);
+            //System.out.println(ldt_start);
 
             LocalTime lt_end = end_time.get();
             LocalDateTime ldt_end = lt_end.atDate(end_date.get());
 
-            System.out.println(ldt_end.toString());
+            //System.out.println(ldt_end.toString());
 
             pstmt.setString(1, titel.get());
 

@@ -124,6 +124,7 @@ public class StundenplanC {
 
         tvRoot.setExpanded(true);
 
+        //alle schon vorhandene Einheiten beim Start in die TreeView einfügen
         for (Einheit e : Einheit.findAll(statement)) {
             TreeItem<Einheit> tvItem = new TreeItem<>(e);
             if (tvRoot.getChildren().toString().indexOf(e.toString()) == -1) {
@@ -131,6 +132,7 @@ public class StundenplanC {
             }
         }
         
+        //alle vorhandenen Stunden beim Start in den Stundenplan einfügen
         for (Stunde s : Stunde.findAll(statement)) {
             VBox vBox = new VBox();
             label = new Label();
@@ -139,6 +141,7 @@ public class StundenplanC {
             vBox.getChildren().add(label);
             vBox.getStyleClass().add("einheit");
 
+            //mehrere MouseEvent handler um den Cursor zu verändern
             vBox.setOnMouseEntered(new EventHandler<MouseEvent>() {
                 public void handle(MouseEvent event) {
                     tvEinheiten.getScene().setCursor(Cursor.HAND);
@@ -150,6 +153,7 @@ public class StundenplanC {
                     tvEinheiten.getScene().setCursor(Cursor.DEFAULT);
                 }
             });
+            //MouseEvent handler zur Überprüfung vom Doppelklick um die Stunde aus dem Stundenplan zu entfernen
             vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 public void handle(MouseEvent event) {
                     if (event.getClickCount() == 2) {
@@ -162,6 +166,7 @@ public class StundenplanC {
 
         }
 
+        //MouseEvent handler zum überprüfen, ob eine Einheit angeklickt wird, gedraggt wird, gedroppt wird etc.
         tvEinheiten.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 tvEinheiten.setMouseTransparent(true);
@@ -188,17 +193,20 @@ public class StundenplanC {
             }
         });
 
+        //drag and drop handler
         tvEinheiten.setOnMouseReleased(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 calendarGrid.getStyleClass().removeAll("addGrid");
                 calendarGrid.setGridLinesVisible(false);
                 tvEinheiten.setMouseTransparent(false);
+                //Überprüfung ob das Objekt wirklich gedraggt worden ist und nicht nur angeklickt
                 if (isDragged) {
                     String node = event.getPickResult().getIntersectedNode().toString();
 
+                    //Überprüfung ob das Objekt in den Stundenplan gedroppt wurde
                     if (node.contains("Grid")) {
 
-                        
+                        //neues Stunden Objekt erstellen
                         vBox = new VBox();
                         label = new Label();
                         String text = tvEinheiten.getSelectionModel().getSelectedItem().getValue().toString();
@@ -218,6 +226,7 @@ public class StundenplanC {
                                 tvEinheiten.getScene().setCursor(Cursor.DEFAULT);
                             }
                         });
+                        //ausrechnen an welcher Stell im Stundenplan die Einheit eingefügt werden soll
                         double cellWidth = ((calendarGrid.getWidth() - 50) / 6) + 10;
                         double cellHeight = 123.0;
                         double x = event.getPickResult().getIntersectedPoint().getX();
@@ -232,7 +241,8 @@ public class StundenplanC {
                                     removeFromTable((int)col, (int)row);
                                 }
                             }
-                        });
+                        }); 
+                        //Stunde wird in den
                         calendarGrid.add(vBox, (int) col, (int) row);
 
                     }
